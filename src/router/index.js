@@ -1,26 +1,54 @@
-import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import { createRouter, createWebHistory } from "vue-router"
+import Layout from "@/layout/index.vue"
 
-const routes = [
+import RoleListRouter from "./modules/a.js"
+import UserManageRouter from "./modules/b.js"
+// 私有路由
+export const asyncRoutes = [...RoleListRouter, ...UserManageRouter]
+export const constRoutes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    component: Layout,
+    redirect: '/dashboard',
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/dashboard",
+    component: Layout,
+    meta: {
+      title: "系统首页",
+      icon: "dashboard",
+      roles: ["embroadcast:first:page"]
+    },
+    children: [
+      {
+        path: "",
+        name: "Dashboard",
+        component: () => import("@/views/home"),
+        
+      }
+    ]
   },
-];
+  {
+    path: "/login",
+    name: "login",
+    component: () =>
+    import( "@/views/login/index.vue")
+  },
+  {
+    path: "/401",
+    name: "401",
+    component: () => import( "@/views/error/401.vue")
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import( "@/views/error/404.vue")
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes: constRoutes
+})
 
-export default router;
+export default router

@@ -1,9 +1,15 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex'
+import getters from './getters.js'
+
+import app from './modules/app'
+import permission from './modules/permission'
+import user from './modules/user'
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
-});
+  getters,
+  modules:{
+    app,
+    permission,
+    user
+  }
+})
