@@ -41,10 +41,7 @@
 <script setup>
 import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
-import store from '@/store/index.js'
 import { setToken } from '@/utils/store.js'
-import { setUser } from '@/utils/userStore.js'
-
 const formRef = ref(null)
 const ruleForm = reactive({
   userName: '',
@@ -69,30 +66,8 @@ const submitForm = () => {
       tokenInfo: {
         access_token:"xxxxxxx"
       },
-      userInfo: {
-        actualName: '小周',
-        admin: true,
-        userId: '1184273454397001728',
-        conditionDeptIds: [],
-        conditionUserId: null,
-        roles: ['管理员'],
-        permissions: [
-          'embroadcast:first:page',
-          'embroadcast:infoinsert:page',
-          'userManage:page',
-          'common:page',
-          'media:object:list',
-          'audit:deal:list',
-          'sys:employee:list',
-          'sys:app:list',
-          'sys:tenant:list',
-          'pact:type:remove'
-        ],
-      },
     }
-    store.commit('user/SET_LOGININFO', loginInfo)
     setToken(loginInfo.tokenInfo.access_token)
-    setUser(loginInfo.userInfo)
     router.push('/')
   })
 }

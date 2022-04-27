@@ -69,7 +69,7 @@ const getList = () => {
     }
   })
 }
-getList()
+// getList()
 
 const handleEdit = (row) => {
   console.log(row, '212')

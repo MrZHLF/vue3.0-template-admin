@@ -17,6 +17,7 @@ import store from './store/index'
 
 // 初始化
 import initApp from './init'
+// 权限
 import './permission'
 
 const app = createApp(App)

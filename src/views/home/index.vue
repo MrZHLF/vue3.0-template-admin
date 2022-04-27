@@ -9,6 +9,12 @@
         <span class="date">{{ countDown }}</span>
       </el-col>
     </el-row>
+    <el-row>
+      <el-col :span="24">
+        <p>可以加我微信，一起沟通学习</p>
+        <img src="./1.jpg" alt="">
+      </el-col>
+    </el-row>
   </div>
 </template>
 
